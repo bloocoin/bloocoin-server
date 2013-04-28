@@ -33,7 +33,11 @@ def main():
     sock.listen(5)
     while True:
         obj, conn = sock.accept()
-        data = obj.recv(1024)
+        try:
+            data = obj.recv(1024)
+        except:
+            obj.close()   #This will only happen if the client suddenly disconnects as it is making a request.
+            continue
         print conn[0], data
         if data:
             threading.Thread(target=handle, args=(data, obj)).start() #If data we start some need to then parse the data in json format.
