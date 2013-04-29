@@ -23,13 +23,9 @@ cmds = {
 def main():
     port = 3122
     sock = socket.socket()
-    while True: #Sometimes server doesn't end correctly.
-        try:
-            sock.bind(('0.0.0.0', port))
-            break
-        except:
-            print "Address already in use."
-            time.sleep(1)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind(('0.0.0.0', port))
+
     sock.listen(5)
     while True:
         obj, conn = sock.accept()
