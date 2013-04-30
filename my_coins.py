@@ -1,5 +1,6 @@
 import mongo
 
+
 def my_coins(obj, data):
     try:
         addr = str(data[u'addr'])
@@ -8,10 +9,9 @@ def my_coins(obj, data):
         obj.send("Error")
         obj.close()
         return
-    if mongo.db.addresses.find_one({"addr":addr, "pwd":pwd}):
-        coins = 0                                # I am sure there is a better way of doing this
-        for x in mongo.db.coins.find({"addr":addr}):   # Finds all coins belonging to an address and increases coins by 1.
-            coins += 1
+    if mongo.db.addresses.find_one({"addr": addr, "pwd": pwd}):
+        # I <3 python.
+        coins = len(mongo.db.coins.find({"addr": addr}))
         obj.send(str(coins))
         obj.close()
     else:
