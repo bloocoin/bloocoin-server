@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import mongo
 from get_coin import difficulty
 from hashlib import sha512

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import socket
 import get_coin
 import send_coin
