@@ -3,12 +3,25 @@ import json
 
 
 class Command(object):
+    """ The base class for commands the clients can run.
+        TBD (to be documented)
+    """
+    required = []
+
     def __init__(self, sock, data):
         self.sock = sock
         try:
             self.data = json.loads(data)
         except ValueError:
             self.error("Unable to decode request JSON")
+            return
+        missing = []
+        for k in self.required:
+            if k in self.data:
+                continue
+            missing.append(k)
+        if missing:
+            self.error("Missing keys: {0}".format(', '.join(missing)))
             return
 
     def handle(self, *args, **kwargs):
