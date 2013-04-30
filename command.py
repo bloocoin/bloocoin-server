@@ -14,6 +14,7 @@ class Command(object):
             self.data = json.loads(data)
         except ValueError:
             self.error("Unable to decode request JSON")
+            self._handle = False
             return
         missing = []
         for k in self.required:
@@ -22,7 +23,10 @@ class Command(object):
             missing.append(k)
         if missing:
             self.error("Missing keys: {0}".format(', '.join(missing)))
+            self._handle = False
             return
+        # This is so we don't call handle() unless we should
+        self._handle = True
 
     def handle(self, *args, **kwargs):
         self.error("This command has not been implemented correctly")

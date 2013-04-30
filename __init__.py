@@ -20,6 +20,15 @@ cmds = {
     "transactions": transactions.transactions,
 }
 
+ncmds = {
+    "get_coin": get_coin.GetCoin,
+    "register": register.Register,
+    "send_coin": send_coin.SendCoin,
+    "my_coins": my_coins.MyCoins,
+    "check": check.Check,
+    "transactions": transactions.Transactions
+}
+
 
 def main():
     port = 3122
@@ -47,11 +56,13 @@ def main():
 
 def handle(data, obj):  # Function for parsing commands, {'cmd':command}
     try:
-        data = json.loads(data)
-        cmds[data[u'cmd']](obj, data)
-    except Exception as error:
+        d = json.loads(data)
+        cmd = ncmds[d['cmd']](obj, data)
+        if cmd._handle:
+            cmd.handle()
+    except Exception as e:
         # If data is not in the json format it will log the error.
-        print error
+        print e
         #with open("log.txt", 'a') as file:
             #file.write(error)
 
