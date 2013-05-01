@@ -10,16 +10,6 @@ import threading
 import register
 import json
 
-
-cmds = {
-    "get_coin": get_coin.get_coin,
-    "register": register.register,
-    "send_coin": send_coin.send_coin,
-    "my_coins": my_coins.my_coins,
-    "check": check.check,
-    "transactions": transactions.transactions,
-}
-
 ncmds = {
     "get_coin": get_coin.GetCoin,
     "register": register.Register,
