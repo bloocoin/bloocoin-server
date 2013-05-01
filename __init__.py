@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+__version__ = "1.1.0-stable"
+
 import socket
 import get_coin
 import send_coin
