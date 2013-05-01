@@ -46,7 +46,6 @@ def handle(data, obj): #Function for parsing commands, {'cmd':command}
         cmds[data[u'cmd']](obj, data)
     except Exception, error:                     #If data is not in the json format it will log the error.
         print error
-        return
         #with open("log.txt", 'a') as file:
             #file.write(error)
 
