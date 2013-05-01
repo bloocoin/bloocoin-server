@@ -48,7 +48,6 @@ def main():
             continue
         print conn[0], data
         if data:
-            #If data we start some need to then parse the data in json format.
             threading.Thread(target=handle, args=(data, obj)).start()
         else:
             continue
