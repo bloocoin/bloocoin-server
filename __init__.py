@@ -58,7 +58,7 @@ def handle(data, obj):  # Function for parsing commands, {'cmd':command}
             "success": False,
             "message": "Unable to parse JSON request",
             "payload": {
-                "json": data
+                "request": data
             }
         }))
     except Exception as e:
