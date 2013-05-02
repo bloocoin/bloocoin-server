@@ -6,7 +6,14 @@ import command
 
 
 class Register(command.Command):
-    """ TBD (to be documented) """
+    """ Allows clients to register their address with the
+        server's central database. If a given address
+        already exists, they should regenerate and try
+        again with a new one, if the user requested a
+        registration.
+
+        fingerprint: {"cmd": "register", "addr": _, "pwd": _}
+    """
     required = ['addr', 'pwd']
 
     def handle(self, *args, **kwargs):

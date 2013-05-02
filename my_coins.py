@@ -4,7 +4,11 @@ import command
 
 
 class MyCoins(command.Command):
-    """ TBD (to be documented) """
+    """ Allows users to check the amount of coins
+        under their account.
+
+        fingerprint: {"cmd": "my_coins", "addr": _, "pwd": _}
+    """
     required = ['addr', 'pwd']
 
     def handle(self, *args, **kwargs):

@@ -6,7 +6,14 @@ import command
 
 
 class Check(command.Command):
-    """ TBD (to be documented) """
+    """ Allows miners to send work to the
+        server for submission. If the given
+        hashes are valid, it will be added to
+        the given account address.
+
+        fingerprint:
+         {"cmd": "check", "winning_string": _, "winning_hash": _, "addr": _}
+    """
     required = ['winning_string', 'winning_hash', 'addr']
 
     def handle(self, *args, **kwargs):

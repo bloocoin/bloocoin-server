@@ -20,6 +20,8 @@ class GetCoin(command.Command):
         When real cryptography is added, this will give the
         current coin to the miner so they can all work towards
         the same coin.
+
+        fingerprint: {"cmd": "get_coin"}
     """
     def handle(self, *args, **kwargs):
         self.success({"difficulty": difficulty()})

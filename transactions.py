@@ -6,7 +6,12 @@ import command
 
 
 class Transactions(command.Command):
-    """ TBD (to be documented) """
+    """ Gives the user a list of their transactions,
+        allowing clients to display changes of coins
+        to and from the given address.
+
+        fingerprint: {"cmd": "transactions", "addr": _, "pwd": _}
+    """
     required = ['addr', 'pwd']
 
     def handle(self, *args, **kwargs):

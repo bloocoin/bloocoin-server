@@ -4,7 +4,14 @@ import command
 
 
 class SendCoin(command.Command):
-    """ TBD (to be documented) """
+    """ Allows users to move coins from their address
+        to another users, given they have enough coins
+        for the transaction.
+        This requires the ADDR and PWD from the bloostamp,
+        which is the same as the ones sent to register.
+
+        fingerprint: {"cmd": "send_coin", "to": _, "addr": _, "pwd": _}
+    """
     required = ['amount', 'to', 'addr', 'pwd']
 
     def handle(self, *args, **kwargs):
