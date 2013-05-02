@@ -14,7 +14,7 @@ class MyCoins(command.Command):
     def handle(self, *args, **kwargs):
         addr = self.data['addr']
         pwd = self.data['pwd']
-        if mongo.db.address.find_one({"addr": addr, "pwd": pwd}):
+        if mongo.db.addresses.find_one({"addr": addr, "pwd": pwd}):
             coins = len(mongo.db.coins.find({"addr": addr}))
             self.success({"amount": coins})
             return
