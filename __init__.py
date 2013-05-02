@@ -51,9 +51,19 @@ def handle(data, obj):  # Function for parsing commands, {'cmd':command}
         cmd = ncmds[d['cmd']](obj, data)
         if cmd._handle:
             cmd.handle()
+    except ValueError as e:
+        # If there's a decoding error, send them a reply,
+        # so they're not just left hanging.
+        obj.send(json.dumps({
+            "success": False,
+            "message": "Unable to parse JSON request",
+            "payload": {
+                "json": data
+            }
+        }))
     except Exception as e:
         # If data is not in the json format it will log the error.
-        print e
+        pass
         #with open("log.txt", 'a') as file:
             #file.write(error)
 
