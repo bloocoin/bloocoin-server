@@ -15,9 +15,7 @@ class MyCoins(command.Command):
         addr = self.data['addr']
         pwd = self.data['pwd']
         if mongo.db.addresses.find_one({"addr": addr, "pwd": pwd}):
-            coins = 0                                                  
-            for x in mongo.db.coins.find({"addr":addr}):
-                coins += 1
+            coins = coins = mongo.db.coins.find({"addr":addr}).count() #Much better eh?
             self.success({"amount": coins})
             return
         else:
