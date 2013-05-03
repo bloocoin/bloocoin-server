@@ -17,7 +17,6 @@ develop-eggs
 .installed.cfg
 lib
 lib64
-.pyc
 # Installer logs
 pip-log.txt
 
@@ -34,8 +33,9 @@ nosetests.xml
 .project
 .pydevproject
 
-# BlooCoin related files
+## BlooCoin related files
+# From plausibility's miner
 *.blc
+# Stamps, for privacy in testing
 bloostamp
-# In due time..
 .bloostamp

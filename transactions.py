@@ -1,18 +1,36 @@
-import mongo
+# -*- coding: utf-8 -*-
 import json
 
-def transactions(obj, data):
-    try:
-        addr = str(data[u'addr'])
-        pwd = str(data[u'pwd'])
-    except KeyError:
-        obj.send("Error")
-        obj.close()
-        return
-    if mongo.db.addresses.find_one({"addr":addr, "pwd":pwd}):
-        for x in mongo.db.transactions.find({"to":addr}):
-            obj.send(json.dumps({"from":x['from'], "to":addr, "amount":x['amount']})+"\n")
-        for x in mongo.db.transactions.find({"from":addr}):
-            obj.send(json.dumps({"from":addr, "to":x['to'], "amount":x['amount']})+"\n")
-        obj.close()
-        return
+import mongo
+import command
+
+
+class Transactions(command.Command):
+    """ Gives the user a list of their transactions,
+        allowing clients to display changes of coins
+        to and from the given address.
+
+        fingerprint: {"cmd": "transactions", "addr": _, "pwd": _}
+    """
+    required = ['addr', 'pwd']
+
+    def handle(self, *args, **kwargs):
+        addr = self.data['addr']
+        pwd = self.data['pwd']
+        if not mongo.db.addresses.find_one({"addr": addr, "pwd": pwd}):
+            self.error("Your address or password was invalid")
+            return
+        payload = {"transactions": []}
+        for t in mongo.db.transactions.find({"to": addr}):
+            payload['transactions'].append({
+                "from": t['from'],
+                "to": addr,
+                "amount": t['amount']
+            })
+        for t in mongo.db.transactions.find({"from": addr}):
+            payload['transactions'].append({
+                "from": addr,
+                "to": t['to'],
+                "amount": t['amount']
+            })
+        self.success(payload)
