@@ -63,9 +63,9 @@ def handle(data, obj):  # Function for parsing commands, {'cmd':command}
         }))
     except Exception as e:
         # If data is not in the json format it will log the error.
+        print e #It's nice to know what the problem is instead of just passing it.
         pass
-        #with open("log.txt", 'a') as file:
-            #file.write(error)
+
 
 
 if __name__ == "__main__":
