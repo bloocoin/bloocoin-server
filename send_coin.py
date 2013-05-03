@@ -17,7 +17,7 @@ class SendCoin(command.Command):
     def handle(self, *args, **kwargs):
         addr = self.data['addr']
         to = self.data['to']
-
+        pwd = self.data['pwd']
         valid_account = mongo.db.addresses.find_one({"addr": addr, "pwd": pwd})
         valid_recipient = mongo.db.addresses.find_one({"addr": to})
         if not valid_account:
