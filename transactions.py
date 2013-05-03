@@ -31,6 +31,6 @@ class Transactions(command.Command):
             payload['transactions'].append({
                 "from": addr,
                 "to": t['to'],
-                "amount": x['amount']
+                "amount": t['amount']
             })
         self.success(payload)
