@@ -31,7 +31,7 @@ class SendCoin(command.Command):
         if amount <= 0:
             self.error("Amount must be one or more")
             return
-        coins = len(mongo.db.coins.find({"addr": addr}))
+        coins = mongo.db.coins.find({"addr": addr}).count()
         if coins < amount:
             self.error("You don't have enough coins")
             return
