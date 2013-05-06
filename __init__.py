@@ -11,6 +11,7 @@ import time
 import threading
 import register
 import json
+import total_coins
 
 ncmds = {
     "get_coin": get_coin.GetCoin,
@@ -18,7 +19,8 @@ ncmds = {
     "send_coin": send_coin.SendCoin,
     "my_coins": my_coins.MyCoins,
     "check": check.Check,
-    "transactions": transactions.Transactions
+    "transactions": transactions.Transactions,
+    "total_coins": total_coins.TotalCoins,
 }
 
 
