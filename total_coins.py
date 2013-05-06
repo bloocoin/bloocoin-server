@@ -9,4 +9,4 @@ class TotalCoins(command.Command):
     required = ["total_coins"]
 
     def handle(self):
-        self.success(mongo.db.coins.count())        
+        self.success({"amount":mongo.db.coins.count()})        
