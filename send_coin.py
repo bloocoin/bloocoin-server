@@ -38,7 +38,7 @@ class SendCoin(command.Command):
         for _ in xrange(0, amount):
             before = mongo.db.coins.find_one({"addr": addr})
             before['addr'] = to
-            mongo.db.coins.update({"addr": addr}, {"addr": to})
+            mongo.db.coins.update({"addr": addr}, before)
         mongo.db.transactions.insert({
             "to": to,
             "from": addr,
