@@ -6,7 +6,7 @@ class TotalCoins(command.Command):
     """ 
     {"cmd":"total_coins"}
     """
-    required = ["total_coins"]
+    required = []
 
     def handle(self):
         self.success({"amount":mongo.db.coins.count()})        
