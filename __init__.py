@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-__version__ = "1.1.0-stable"
+__version__ = "1.2.0-stable"
+# X.Y.Z-<branch>
 
 import socket
 import get_coin
@@ -13,6 +14,8 @@ import register
 import json
 import total_coins
 
+# Note: When adding new commands, increment the Y of the
+# __version__ above.
 ncmds = {
     "get_coin": get_coin.GetCoin,
     "register": register.Register,
