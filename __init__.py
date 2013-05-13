@@ -36,21 +36,18 @@ def main():
     sock.listen(5)
     while True:
         obj, conn = sock.accept()
-        try:
-            data = obj.recv(1024)
-        except IOError:
-            # This will only happen if the client suddenly
-            # disconnects as it is making a request.
-            obj.close()
-            continue
-        print conn[0], data
-        if data:
-            threading.Thread(target=handle, args=(data, obj)).start()
-        else:
-            continue
+        threading.Thread(target=handle, args=(obj,conn)).start()
 
 
-def handle(data, obj):  # Function for parsing commands, {'cmd':command}
+def handle(obj, conn):  # Function for parsing commands, {'cmd':command}
+    try:
+        data = obj.recv(1024)
+    except:
+        obj.close()
+        return
+    if not data:
+        return
+    print conn[0], str(data)
     try:
         d = json.loads(data)
         cmd = ncmds[d['cmd']](obj, data)
