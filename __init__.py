@@ -13,6 +13,7 @@ import threading
 import register
 import json
 import total_coins
+import check_addr
 
 # Note: When adding new commands, increment the Y of the
 # __version__ above.
@@ -24,6 +25,7 @@ ncmds = {
     "check": check.Check,
     "transactions": transactions.Transactions,
     "total_coins": total_coins.TotalCoins,
+    "check_addr": check_addr.CheckAddr,
 }
 
 

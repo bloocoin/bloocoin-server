@@ -8,4 +8,4 @@ username = ""
 password = ""
 
 db = pymongo.MongoClient(host, port).bloocoin
-db.authenticate(username, password)
+#db.authenticate(username, password)
