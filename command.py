@@ -13,9 +13,7 @@ class Command(object):
         try:
             self.data = json.loads(data)
             if self.data['pwd']:
-                print self.data['pwd']
                 self.data['pwd'] = hashlib.sha256(self.data['pwd']).hexdigest()
-                print self.data['pwd']
         except ValueError:
             self.error("Unable to decode request JSON")
             self._handle = False
