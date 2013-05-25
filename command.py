@@ -13,7 +13,7 @@ class Command(object):
         try:
             self.data = json.loads(data)
             pre_hashed = 'x-pre-hashed' in self.data
-            if 'pwd' in self.data and not pre_hased:
+            if 'pwd' in self.data and not pre_hashed:
                 self.data['pwd'] = hashlib.sha256(self.data['pwd']).hexdigest()
         except ValueError, KeyError:
             self.error("Unable to decode request JSON")
