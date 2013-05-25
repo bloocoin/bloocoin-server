@@ -12,9 +12,10 @@ class Command(object):
         self.sock = sock
         try:
             self.data = json.loads(data)
-            if self.data['pwd']:
+            pre_hashed = 'x-pre-hashed' in self.data
+            if 'pwd' in self.data and not pre_hased:
                 self.data['pwd'] = hashlib.sha256(self.data['pwd']).hexdigest()
-        except ValueError:
+        except ValueError, KeyError:
             self.error("Unable to decode request JSON")
             self._handle = False
             return
